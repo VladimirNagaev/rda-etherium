@@ -20,7 +20,7 @@
    <string>РДА Эфир</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -92,7 +92,7 @@
      <item row="3" column="0" colspan="3">
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QComboBox" name="comPortCooseCb">
+        <widget class="QComboBox" name="box_available_ports">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
