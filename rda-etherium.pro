@@ -19,13 +19,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
         consoleApplication: false
 
 SOURCES += \
-    comportworker.cpp \
     deviceconnectinfo.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
-    comportworker.h \
     deviceconnectinfo.h \
     mainwindow.h
 
