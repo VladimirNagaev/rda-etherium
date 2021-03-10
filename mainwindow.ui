@@ -30,25 +30,15 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0" colspan="3">
-      <widget class="QLabel" name="label">
+     <item row="4" column="2">
+      <widget class="QLabel" name="baudLable">
        <property name="font">
         <font>
-         <family>MS Sans Serif</family>
-         <pointsize>13</pointsize>
+         <pointsize>10</pointsize>
         </font>
        </property>
-       <property name="acceptDrops">
-        <bool>false</bool>
-       </property>
        <property name="text">
-        <string>Программа для настройки Маски подсети и адреса прибора в группе приборов семейства РДА</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
+        <string>Baud rate</string>
        </property>
       </widget>
      </item>
@@ -65,66 +55,7 @@
        </property>
       </spacer>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="comLable">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>COM Port</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QLabel" name="baudLable">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Baud rate</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0" colspan="3">
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QComboBox" name="box_available_ports">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="baudRateCb">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="4" column="1">
-      <spacer name="verticalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>58</width>
-         <height>18</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="5" column="0" colspan="3">
+     <item row="7" column="0" colspan="3">
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QSpinBox" name="spinBox">
@@ -176,7 +107,89 @@
        </item>
       </layout>
      </item>
-     <item row="6" column="0" colspan="3">
+     <item row="9" column="0" colspan="2">
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="2" column="0">
+      <widget class="QCheckBox" name="u9_Cheskbox">
+       <property name="font">
+        <font>
+         <family>Aveny T</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>U9</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0" colspan="3">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QComboBox" name="box_available_ports">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="baudRateCb">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="0" colspan="3">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>Aveny T</family>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Программа для настройки Маски подсети и адреса прибора в группе приборов семейства РДА</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="comLable">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>COM Port</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0" colspan="3">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <spacer name="horizontalSpacer">
@@ -218,18 +231,57 @@
        </item>
       </layout>
      </item>
-     <item row="7" column="0" colspan="2">
-      <spacer name="verticalSpacer">
+     <item row="6" column="1">
+      <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>20</width>
-         <height>40</height>
+         <width>58</width>
+         <height>18</height>
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="3" column="0">
+      <widget class="QCheckBox" name="u8_Cheskbox">
+       <property name="font">
+        <font>
+         <family>Aveny T</family>
+         <pointsize>11</pointsize>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>U8</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0" colspan="3">
+      <widget class="QLabel" name="stateLable">
+       <property name="font">
+        <font>
+         <family>Aveny T</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="whatsThis">
+        <string extracomment="Tehnical info"/>
+       </property>
+       <property name="text">
+        <string>state</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="openExternalLinks">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
