@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>377</width>
-    <height>511</height>
+    <width>375</width>
+    <height>573</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,7 +26,7 @@
       <x>30</x>
       <y>0</y>
       <width>331</width>
-      <height>461</height>
+      <height>531</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
@@ -39,6 +39,34 @@
        </property>
        <property name="text">
         <string>Baud rate</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0" colspan="3">
+      <widget class="QLabel" name="stateLable">
+       <property name="font">
+        <font>
+         <family>Aveny T</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="whatsThis">
+        <string extracomment="Tehnical info"/>
+       </property>
+       <property name="text">
+        <string>state</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="indent">
+        <number>0</number>
+       </property>
+       <property name="openExternalLinks">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -169,6 +197,9 @@
        <property name="text">
         <string>Программа для настройки Маски подсети и адреса прибора в группе приборов семейства РДА</string>
        </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
@@ -258,31 +289,6 @@
        </property>
       </widget>
      </item>
-     <item row="10" column="0" colspan="3">
-      <widget class="QLabel" name="stateLable">
-       <property name="font">
-        <font>
-         <family>Aveny T</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="whatsThis">
-        <string extracomment="Tehnical info"/>
-       </property>
-       <property name="text">
-        <string>state</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-       <property name="openExternalLinks">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
   </widget>
@@ -291,7 +297,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>377</width>
+     <width>375</width>
      <height>20</height>
     </rect>
    </property>
