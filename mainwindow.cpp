@@ -205,11 +205,11 @@ QByteArray MainWindow::searchSequence(quint8 firstByte) // формирован�
     searchSequence.push_back(0x01);
 
     uint16_t crcSS = arrayCRC(searchSequence);
-    loByte = crcSS & 255;
+    loByte = crcSS & 0xFF;
     hiByte = crcSS >> 8;
 
-    searchSequence.push_back((char)loByte);
-    searchSequence.push_back((char)hiByte);
+    searchSequence.push_back(loByte);
+    searchSequence.push_back((unsigned char)hiByte);
 
     return searchSequence;
 }
@@ -256,7 +256,7 @@ QByteArray MainWindow::setNetMaskSequence(quint8 netMask) // формирова�
     netMaskSequence.push_back(0x01);
     netMaskSequence.push_back(0x02);
     netMaskSequence.push_back(char(0x00));
-    netMaskSequence.push_back(netMask);
+    netMaskSequence.push_back((char)netMask);
 
     uint16_t crcSS = arrayCRC(netMaskSequence);
     loByte = crcSS & 0xFF;
@@ -278,11 +278,12 @@ int MainWindow::getAdressFromReply(QByteArray vector)
 QString byteArrToStr(QByteArray vector)
 {
     QString string;
+    string.append("|");
     for (int i = 0; i < vector.size(); i++) {
         QString temp;
-        temp.setNum(vector.at(i), 16);
+        temp.setNum(vector.at(i), 16).toUpper();
         string.append(temp);
-        string.append(" ");
+        string.append(" |");
     }
 
     string.append("\n");
@@ -293,8 +294,13 @@ QString byteArrToStr(QByteArray vector)
 void MainWindow::on_checkParamButton_clicked() // кнопочка проверки параметров
 {
     QString string;
+    string = ui->stateLable->text();
+    string.append("\n");
     for (quint8 i = 1; i < 8; i++) {
-        ui->stateLable->setText(searchSequence(i));
+        string.append(QString::number(sizeof(searchSequence(i)), 10));
+        string.append(" -  ");
+        string.append(byteArrToStr(searchSequence(i)));
+        ui->stateLable->setText(string);
         current_serial.write(searchSequence(i), searchSequence(i).length());
         QByteArray reply = current_serial.readAll();
         current_serial.flush();
@@ -308,15 +314,24 @@ void MainWindow::on_checkParamButton_clicked() // кнопочка провер�
 }
 
 void MainWindow::on_NetMaskSetButton_clicked() // изменение маски подсети
-{}
-
-void MainWindow::on_AdressSetButton_clicked()
 {
-    quint8 addr = (quint8)ui->spinBox->value();
+    quint8 addr = (quint8)ui->spinBox->value(); // забираем маску из поля для ввода
     if (addr != 0) {
-        current_serial.write(setAddresSequence((quint8)addr), setAddresSequence((quint8)addr).length());
-        ui->stateLable->setText(byteArrToStr(setAddresSequence((quint8)addr)));
-        current_serial.flush();
+        current_serial.write(setAddresSequence((quint8)addr), setNetMaskSequence((quint8)addr).length()); // кидаем посылку
+        ui->stateLable->setText(byteArrToStr(setNetMaskSequence((quint8)addr))); // повторяем втроку технической информации
+        current_serial.flush(); // очищаем буфер порта
+    } else {
+        ui->stateLable->setText("Кажется Маска (сеть) не может быть 0 ");
+    }
+}
+
+void MainWindow::on_AdressSetButton_clicked() // изменение адреа прибора
+{
+    quint8 addr = (quint8)ui->spinBox_2->value(); // забираем адрес из поля для ввода
+    if (addr != 0) {
+        current_serial.write(setAddresSequence((quint8)addr), setAddresSequence((quint8)addr).length()); // кидаем посылку
+        ui->stateLable->setText(byteArrToStr(setAddresSequence((quint8)addr))); // повторяем втроку технической информации
+        current_serial.flush(); // очищаем буфер порта
     } else {
         ui->stateLable->setText("Кажется Адрес не может быть 0 ");
     }
@@ -349,7 +364,7 @@ void MainWindow::on_readButton_clicked()
 {
     if (!modbusDevice)
         return;
-    ui->readValue->clear();
+    // ui->readValue->clear();
     statusBar()->clearMessage();
 
     if (auto *lastRequest = modbusDevice->sendReadRequest(readRequest(), SERVER_ADDRESS)) {
@@ -372,7 +387,7 @@ void MainWindow::readReady()
         const QModbusDataUnit unit = lastRequest->result();
         for (uint i = 0; i < unit.valueCount(); i++) {
             const QString entry = tr("Address: %1, Value: %2").arg(unit.startAddress()).arg(QString::number(unit.value(i)));
-            ui->readValue->addItem(entry);
+            //    ui->readValue->addItem(entry);
         }
     } else if (lastRequest->error() == QModbusDevice::ProtocolError) {
         statusBar()->showMessage(tr("Read response error: %1 (Mobus exception: 0x%2)")
@@ -397,7 +412,7 @@ void MainWindow::on_writeButton_clicked()
 
     QModbusDataUnit writeUnit = writeRequest();
     QModbusDataUnit::RegisterType table = writeUnit.registerType();
-    writeUnit.setValue(0, ui->writeBox->value());
+    // writeUnit.setValue(0, ui->writeBox->value());
 
     if (auto *lastRequest = modbusDevice->sendWriteRequest(writeUnit, SERVER_ADDRESS)) {
         if (!lastRequest->isFinished()) {

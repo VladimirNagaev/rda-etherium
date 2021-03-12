@@ -68,6 +68,9 @@ private slots:
 
     void onStateChanged(int state);
     void readReady();
+    void on_readButton_clicked();
+    void on_connectButton_clicked();
+    void on_writeButton_clicked();
 
 private:
     QModbusClient *modbusDevice;
